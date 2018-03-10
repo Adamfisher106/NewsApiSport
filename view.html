@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BBC latest -news</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+<style>
+.imagesize img{
+    width: 100%;
+}
+.panel-title{
+    
+ color:black;
+ text-decoration: none;
+}
+#profile1 {
+    background-color:whitesmoke;
+    padding:2.5%;
+}
+hr{
+  border:1px solid black;
+}
+
+</style>
+  <body>
+    <div class="col-md-3">
+    
+        <div id="profile1"></div>
+      
+      <div id="profile"></div>
+
+    </div>
+
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.js"></script>
+  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function(){
+
+$.ajax({
+ url:'https://newsapi.org/v2/top-headlines?q=premier league&apiKey=489fc29e2c59486a9ae1f038017ac04f',
+    }).done(function(data){
+       console.log(data);
+    for(var i=0;i<data.articles.length;i++){
+       $('#profile1').append(`
+
+            <hr />
+
+            <a href="${data.articles[i].url}" <h3 class="panel-title">${data.articles[i].title}</h3></a>
+            
+            <br/>
+            <br/>    
+            <p class="imagesize"> <img src="${data.articles[i].urlToImage}"></p>
+            <br/>
+
+            <p class="panel-title">Author: ${data.articles[i].author}</p>
+             
+            <p class="panel-title">Description: ${data.articles[i].description}</h6>
+             <br/>
+
+           `);
+       }
+      });    
+     
+    });
+     </script>
+  </body>
+</html>
